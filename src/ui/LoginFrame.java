@@ -7,18 +7,22 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.sql.*;
 import database.DatabaseConnection;
-
+import javax.swing.ImageIcon;
 public class LoginFrame extends JFrame {
     private JTextField userIdField;
     private JPasswordField passwordField;
     private JComboBox<String> userTypeCombo;
 
     public LoginFrame() {
-        setTitle("Academic Assistant - Login");
+        setTitle("Ilmly-Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 500);
         setLocationRelativeTo(null);
         setResizable(false);
+
+
+      //icon ilmly
+        setIconImage(new ImageIcon(getClass().getResource("/ilmly.png")).getImage());
 
         // LayeredPane to hold background and mainPanel
         JLayeredPane layeredPane = new JLayeredPane();
@@ -38,7 +42,7 @@ public class LoginFrame extends JFrame {
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
         // Title
-        JLabel titleLabel = new JLabel("Academic Assistant");
+        JLabel titleLabel = new JLabel("ilmly");
         titleLabel.setFont(Theme.TITLE_FONT);
         titleLabel.setForeground(Theme.TEXT_QW);
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -76,7 +80,7 @@ public class LoginFrame extends JFrame {
         // User Type
         JLabel userTypeLabel = new JLabel("User Type");
         userTypeLabel.setFont(Theme.NORMAL_FONT);
-        userTypeLabel.setForeground(Theme.TEXT_COLOR);
+        userTypeLabel.setForeground(Color.WHITE);
         userTypeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainPanel.add(userTypeLabel);
         mainPanel.add(Box.createVerticalStrut(5));
@@ -92,8 +96,23 @@ public class LoginFrame extends JFrame {
         JButton loginButton = new JButton("Login");
         Theme.styleButton(loginButton);
         loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        loginButton.setBackground(new Color(138, 43, 226));
+        loginButton.setForeground(Color.WHITE);
         loginButton.addActionListener(e -> handleLogin());
         mainPanel.add(loginButton);
+
+        // After the Login Button
+        JButton registerButton = new JButton("Don't have an account? Register");
+        Theme.styleButton(registerButton);
+        registerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        registerButton.setBackground(new Color(138, 43, 226));
+        registerButton.setForeground(Color.WHITE);
+        registerButton.addActionListener(e -> {
+            this.dispose();
+            new RegistrationFrame().setVisible(true);
+        });
+        mainPanel.add(Box.createVerticalStrut(10));
+        mainPanel.add(registerButton);
 
         layeredPane.add(mainPanel, Integer.valueOf(1));
     }

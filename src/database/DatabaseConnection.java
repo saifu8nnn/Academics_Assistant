@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
     // Make sure these match your MySQL Workbench connection settings
-    private static final String URL = "jdbc:mysql://localhost:3306/academic_assistant?useSSL=false&allowPublicKeyRetrieval=true";
+    private static final String URL = "jdbc:mysql://localhost:3306/academic_assistant";
     private static final String USER = "saif";
     private static final String PASSWORD = "sasasasa";  // Empty password
 
